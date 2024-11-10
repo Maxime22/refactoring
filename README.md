@@ -1,10 +1,6 @@
 # Context 
 
-This project contains php 8.3, nginx and docker. You can also use a command make to add tests.
-It is useful for exercises and katas in PHP.
-Consider to create a fork of this repository to use it for each of your playgrounds.
-
-Enjoy !
+Base on https://github.com/Maxime22/php-minimum, this repo is used to recreate Martin's Fowler example in the book Refactoring (but in PHP).
 
 ## How to run?
 - ```make build```
@@ -12,7 +8,7 @@ Enjoy !
 - ```make install``` (create vendor/autoload.php)
 - Go to http://127.0.0.1:8080/
 
-## If you want to add tests
-- ```make create-tests-setup```
-- ```make add-phpunit```
+## Tests
+- ```make create-tests-setup``` (first time)
+- ```make add-phpunit``` (first time)
 - ```make test```
