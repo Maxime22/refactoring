@@ -9,6 +9,4 @@ Base on https://github.com/Maxime22/php-minimum, this repo is used to recreate M
 - Go to http://127.0.0.1:8080/
 
 ## Tests
-- ```make create-tests-setup``` (first time)
-- ```make add-phpunit``` (first time)
 - ```make test```
