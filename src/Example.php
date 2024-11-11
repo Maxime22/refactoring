@@ -41,16 +41,15 @@ class Example
         };
 
         foreach ($invoice['performances'] as $perf) {
-            $play = $playFor($perf);
-            $thisAmount = $amountFor($perf, $play);
+            $thisAmount = $amountFor($perf, $playFor($perf));
             
             // ajoute des crédits de volume
             $volumeCredits += max($perf['audience'] - 30, 0);
-            if("comedy" === $play['type']){
+            if("comedy" === $playFor($perf)['type']){
                 $volumeCredits += floor($perf['audience'] / 5);
             }
             // imprime la ligne de cette commande
-            $result .= "{$play['name']}: " . $format($thisAmount / 100) . " ({$perf['audience']} seats)<br>";
+            $result .= "{$playFor($perf)['name']}: " . $format($thisAmount / 100) . " ({$perf['audience']} seats)<br>";
             $totalAmount += $thisAmount;
         }
         $result .= "Amount owed is ".$format($totalAmount/100)."<br>";
