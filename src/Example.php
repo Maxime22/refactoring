@@ -13,6 +13,10 @@ class Example
             return '$' . number_format($number, 2, '.', ',');
         };
 
+        $playFor = function($aPerformance) use ($plays) {
+            return $plays[$aPerformance['playID']];
+        };
+
         $amountFor = function ($aPerformance,$play){
             $result = 0;
             switch ($play['type']) {
@@ -37,7 +41,7 @@ class Example
         };
 
         foreach ($invoice['performances'] as $perf) {
-            $play = $plays[$perf['playID']];
+            $play = $playFor($perf);
             $thisAmount = $amountFor($perf, $play);
             
             // ajoute des crédits de volume
