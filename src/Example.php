@@ -44,7 +44,7 @@ class Example
             $result .= "{$play['name']}: " . $format($thisAmount / 100) . " ({$perf['audience']} seats)<br>";
             $totalAmount += $thisAmount;
         }
-        $result .= "Amount awed is ".$format($totalAmount/100)."<br>";
+        $result .= "Amount owed is ".$format($totalAmount/100)."<br>";
         $result .= "You earned ".$volumeCredits." credits<br>";
         return $result;
     }
