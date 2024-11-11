@@ -17,9 +17,9 @@ class Example
             return $plays[$aPerformance['playID']];
         };
 
-        $amountFor = function ($aPerformance,$play){
+        $amountFor = function ($aPerformance) use ($playFor){
             $result = 0;
-            switch ($play['type']) {
+            switch ($playFor($aPerformance)['type']) {
                 case "tragedy":
                     $result = 40000;
                     if ($aPerformance['audience'] > 30) {
@@ -34,14 +34,14 @@ class Example
                     $result += 300*$aPerformance['audience'];
                     break;
                 default:
-                    throw new \Exception("Unknown type {$play['type']}");
+                    throw new \Exception("Unknown type {$playFor($aPerformance)['type']}");
                     break;
             }
             return $result;
         };
 
         foreach ($invoice['performances'] as $perf) {
-            $thisAmount = $amountFor($perf, $playFor($perf));
+            $thisAmount = $amountFor($perf);
             
             // ajoute des crédits de volume
             $volumeCredits += max($perf['audience'] - 30, 0);
