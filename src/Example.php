@@ -13,10 +13,8 @@ class Example
             return '$' . number_format($number, 2, '.', ',');
         };
 
-        foreach ($invoice['performances'] as $perf) {
-            $play = $plays[$perf['playID']];
+        $amountFor = function ($perf,$play){
             $thisAmount = 0;
-        
             switch ($play['type']) {
                 case "tragedy":
                     $thisAmount = 40000;
@@ -35,6 +33,13 @@ class Example
                     throw new \Exception("Unknown type {$play['type']}");
                     break;
             }
+            return $thisAmount;
+        };
+
+        foreach ($invoice['performances'] as $perf) {
+            $play = $plays[$perf['playID']];
+            $thisAmount = $amountFor($perf, $play);
+            
             // ajoute des crédits de volume
             $volumeCredits += max($perf['audience'] - 30, 0);
             if("comedy" === $play['type']){
@@ -48,4 +53,5 @@ class Example
         $result .= "You earned ".$volumeCredits." credits<br>";
         return $result;
     }
+
 }
